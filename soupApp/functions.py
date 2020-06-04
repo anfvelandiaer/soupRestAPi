@@ -140,14 +140,8 @@ def makeTable(name, words, hunts):
     random.seed()
     newWords = convertStr(words)
     newHunts = convertStr(hunts)
-    print(type(newWords))
-    print(newWords)
     words_to_use = ["".join(str(w.lower().split())).encode('utf-8')
                     for w in newWords]
     grid = make_grid(words_to_use, newWords, newHunts)
-    if grid is None:
-        print("Can't make a grid")
-    else:
-        print(grid.to_text())
     
     return grid.to_text()
