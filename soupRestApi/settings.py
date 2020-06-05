@@ -92,10 +92,10 @@ WSGI_APPLICATION = 'soupRestApi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'soupApi',
-        'USER': 'admin',
+        'NAME': 'soup',
+        'USER': 'anfvelandiaer@intuitionwork',
         'PASSWORD': 'Intuition1234%',
-        'HOST': 'test.cgpgne16qrow.sa-east-1.rds.amazonaws.com',
+        'HOST': 'intuitionwork.mysql.database.azure.com',
         'PORT': '3306'
     }
 }
