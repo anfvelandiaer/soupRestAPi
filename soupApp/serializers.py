@@ -1,16 +1,7 @@
 from rest_framework import serializers
-from soupApp.models import Tutorial, Table
+from soupApp.models import Table, Game
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-
-
-class TutorialSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tutorial
-        fields = ('id',
-                  'title',
-                  'description',
-                  'published')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -58,3 +49,39 @@ class TableSerializer(serializers.ModelSerializer):
         )
         table.save()
         return table
+
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ('table',
+                  'user',
+                  'time')
+
+    def create(self, validate_data):
+        game = Game(
+            time=validate_data['time'],
+            table=validate_data['table'],
+            user=validate_data['user'],
+        )
+        print(game.time)
+        game.save()
+        return game
+
+class GameSerializer2(serializers.ModelSerializer):
+    table_name = serializers.CharField(source='table.name')
+    user_name = serializers.CharField(source='user.username')
+    class Meta:
+        model = Game
+        fields = ('table_name',
+                  'user_name',
+                  'time')
+
+    def create(self, validate_data):
+        game = Game(
+            time=validate_data['time'],
+            table_name=validate_data['table'],
+            user_name=validate_data['user'],
+        )
+        print(game.time)
+        game.save()
+        return game

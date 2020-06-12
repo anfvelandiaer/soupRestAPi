@@ -45,6 +45,11 @@ class Game(TimeStampMixin):
     table = models.ForeignKey(Table, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     time = models.PositiveIntegerField(
-        help_text='Tiempo del juego en segundos',
-        editable=False,
+        help_text='Tiempo del juego en segundos'
     )
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Games'   
