@@ -50,6 +50,12 @@ class Grid(object):
         s = s.replace("]", "")
         s = s.replace(", ", ",")
         s = s.split(",")
+        print("a")
+        print(self.positions)
+        print("b")
+        print(self.hunts)
+        print("c")
+        print(self.wordsList)
         
         return {"matrix": s, "positions": self.positions, "hunts": self.hunts, "name": self.name, "words": self.wordsList}
 
@@ -100,6 +106,7 @@ class Grid(object):
                     self.words.append((word, x, y, xd, yd))
                     break
                 tries -= 1
+                
                 if tries <= 0:
                     return False
         return True
@@ -111,6 +118,8 @@ class Grid(object):
 
 
 def make_grid(words=[], wordsList=[], hunts=[], tries=100,):
+    wordslist ="hola"
+    print(wordslist)
     # Parse and validate the style parameter.
     size, directions = ('15x15', all_directions)
     size = size.split('x')
@@ -120,18 +129,19 @@ def make_grid(words=[], wordsList=[], hunts=[], tries=100,):
         wid, hgt = map(int, size)
     except ValueError:
         raise ValueError("Invalid style parameter: %s" % stylep)
-
     directions = [(dirconv[direction[0]], dirconv[direction[1]])
                   for direction in directions]
-
     while True:
         grid = Grid(wid, hgt)
+        # wordslist ="hola"
+        print(words)
+        print(hunts)
+        print(wordslist)
         if grid.place_words(words, directions, wordsList, hunts):
             break
         tries -= 1
         if tries <= 0:
             return None
-
     grid.fill_in_letters()
     return grid
 
@@ -139,9 +149,13 @@ def make_grid(words=[], wordsList=[], hunts=[], tries=100,):
 def makeTable(name, words, hunts):
     random.seed()
     newWords = convertStr(words)
+    print(newWords)
     newHunts = convertStr(hunts)
     words_to_use = ["".join(str(w.lower().split())).encode('utf-8')
                     for w in newWords]
+    print(words_to_use)
     grid = make_grid(words_to_use, newWords, newHunts)
-    
+
     return grid.to_text()
+
+
