@@ -74,7 +74,7 @@ class Grid(object):
         for c in word.decode():
             p = x + self.wid * y
             e = self.data[p]
-            if e != '.' and e != c:
+            if e != '.':
                 return False
             x += xd
             y += yd
@@ -157,5 +157,7 @@ def makeTable(name, words, hunts):
     grid = make_grid(words_to_use, newWords, newHunts)
 
     return grid.to_text()
+
+
 
 

@@ -23,9 +23,10 @@ class Login(APIView):
       password = request.data.get("password")
       user = authenticate(username=username,password=password)
       if user:
-       return Response({"token": user.auth_token.key, "username": user.username, "first_name": user.first_name, "last_name": user.last_name, "email": user.email})
+       return Response({"token": user.auth_token.key, "email": user.username})
       else:
        return Response({"error": "Credenciales incorrectas"}, status = status.HTTP_400_BAD_REQUEST)
+
 
 class TableCreate(generics.CreateAPIView):
     authentication_classes = ()

@@ -27,6 +27,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
 
 # Application definition
 
@@ -148,3 +150,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
